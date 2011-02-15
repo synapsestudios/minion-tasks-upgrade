@@ -27,5 +27,7 @@ class Minion_Task_App_Upgrade extends Minion_Task {
 			$upgrade->execute();
 			Model_App_Version::set_current($timestamp);
 		}
+
+		passthru(DOCROOT.'../minion db:migrate');
 	}
 }
