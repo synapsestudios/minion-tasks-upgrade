@@ -8,12 +8,12 @@ class Minion_Task_App_Upgrade extends Minion_Task {
 
 		$upgrades = array();
 		$files = Kohana::list_files('upgrades');
-		$current = Model_App_Version::get_current();
+		$current = date_create(Model_App_Version::get_current());
 
 		foreach ($files as $file)
 		{
-			$timestamp = pathinfo($file, PATHINFO_FILENAME);
-			if ($timestamp > (int) $current)
+			$timestamp = date_create(pathinfo($file, PATHINFO_FILENAME));
+			if ($timestamp > $current)
 			{
 				$upgrades[$timestamp] = $file;
 			}
