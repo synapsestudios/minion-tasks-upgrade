@@ -12,8 +12,10 @@ class Minion_Task_App_Upgrade extends Minion_Task {
 
 		foreach ($files as $file)
 		{
-			$timestamp = date_create(pathinfo($file, PATHINFO_FILENAME));
-			if ($timestamp > $current)
+			$timestamp = pathinfo($file, PATHINFO_FILENAME);
+			$date = date_create($timestamp);
+
+			if ($date > $current)
 			{
 				$upgrades[$timestamp] = $file;
 			}
